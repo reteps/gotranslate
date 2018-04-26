@@ -92,8 +92,10 @@ func SimpleTranslate(sl, tl, q string) (string, error) {
 }
 
 func (gt *GTranslate) Translate(sl, tl, q string) (*TranslateRet, error) {
-	if sl != "auto" && _, exists := _supportedLangs[sl]; !exists {
+	if sl != "auto" {
+		if _, exists := _supportedLangs[sl]; !exists {
 			return nil, errors.New("source language not supported")
+		}
 	}
 
 	if _, exists := _supportedLangs[tl]; !exists {
@@ -115,7 +117,6 @@ func (gt *GTranslate) Translate(sl, tl, q string) (*TranslateRet, error) {
 
 	ret := &TranslateRet{}
 	err = json.Unmarshal(data, ret)
-	ret.
 	return ret, err
 }
 
