@@ -52,8 +52,8 @@ type typeTKK struct {
 	h1 int
 	h2 int
 }
-func Languages() map[string]string {
-	return _supportedLangs
+func Language(code string) string {
+	return _supportedLangs[code]
 }
 func New(addr string, proxy func(r *http.Request) (*url.URL, error)) (*GTranslate, error) {
 	if addr != TRANSLATE_CN_ADDR && addr != TRANSLATE_COM_ADDR {
