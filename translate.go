@@ -19,7 +19,7 @@ const (
 )
 
 // ISO839-1 https://cloud.google.com/translate/docs/languages
-var _supportedLangs = map[string]string{{"af":"Afrikaans","sq":"Albanian","am":"Amharic","ar":"Arabic",
+var _supportedLangs = map[string]string{	"af":"Afrikaans","sq":"Albanian","am":"Amharic","ar":"Arabic",
 "hy":"Armenian","az":"Azeerbaijani","eu":"Basque","be":"Belarusian","bn":"Bengali",
 "bs":"Bosnian","bg":"Bulgarian","ca":"Catalan","ceb":"Cebuano","zh-CN":"Chinese (Simplified)",
 "zh-TW":"Chinese (Traditional)","co":"Corsican","hr":"Croatian",
@@ -92,13 +92,11 @@ func SimpleTranslate(sl, tl, q string) (string, error) {
 }
 
 func (gt *GTranslate) Translate(sl, tl, q string) (*TranslateRet, error) {
-	if sl != "auto" {
-		if _, exists := _supportedLangs[sl]; !exists {
+	if sl != "auto" && _, exists := _supportedLangs[sl]; !exists {
 			return nil, errors.New("source language not supported")
-		}
 	}
 
-	if if _, exists := _supportedLangs[tl]; !exists {
+	if _, exists := _supportedLangs[tl]; !exists {
 		return nil, errors.New("target language not supported")
 	}
 
